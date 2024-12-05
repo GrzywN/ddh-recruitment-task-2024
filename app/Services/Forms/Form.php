@@ -41,10 +41,10 @@ class Form
 
         foreach ($this->fields as $field) {
             if ($field instanceof FormFieldInterface) {
-                $value = $data[$field->getName()] ?? null;
+                $value = $data[$field->getName()];
 
                 if (! is_string($value)) {
-                    continue;
+                    $value = '';
                 }
 
                 $field->setValue($value);
@@ -65,10 +65,10 @@ class Form
     {
         foreach ($this->fields as $field) {
             if ($field instanceof FormFieldInterface) {
-                $value = $data[$field->getName()] ?? null;
+                $value = $data[$field->getName()];
 
                 if (! is_string($value)) {
-                    continue;
+                    $value = '';
                 }
 
                 $field->setValue($value);
@@ -76,10 +76,10 @@ class Form
         }
     }
 
-    public function render(): string
+    public function render(bool $withCSRF = true): string
     {
         $html = "<form method=\"POST\" action=\"{$this->action}\">";
-        $html .= csrf_field();
+        $html .= $withCSRF ? csrf_field() : '';
 
         foreach ($this->fields as $field) {
             if ($field instanceof FormFieldInterface) {

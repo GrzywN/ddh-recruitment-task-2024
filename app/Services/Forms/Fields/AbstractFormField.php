@@ -27,7 +27,7 @@ abstract class AbstractFormField implements FormFieldInterface
     #[\Override]
     public function setValue(?string $value): void
     {
-        $this->value = htmlspecialchars((string) $this->value, ENT_QUOTES, 'UTF-8');
+        $this->value = htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8');
     }
 
     /**
