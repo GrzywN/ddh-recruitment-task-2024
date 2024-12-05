@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,7 +25,6 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->configureCommands();
         $this->configureModels();
-        $this->configureUrl();
         $this->configureVite();
     }
 
@@ -48,14 +46,6 @@ class AppServiceProvider extends ServiceProvider
         Model::shouldBeStrict();
 
         Model::unguard();
-    }
-
-    /**
-     * Configure the application's URL.
-     */
-    private function configureUrl(): void
-    {
-        URL::forceScheme('https');
     }
 
     /**
